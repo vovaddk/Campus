@@ -2002,7 +2002,6 @@ div.icon > svg {
   z-index: 1;
 }
 
-
 .history__item--reverse .history__item-image {
   padding-left: 90px;
   padding-right: 0;
@@ -2016,4 +2015,71 @@ div.icon > svg {
   /* спочатку було: transform: translateY(-50%); */
   transform: translateY(-50%) scaleX(-1);
   transform-origin: left center;
+}
+/* --- Layout wrapper --- */
+.vm-block{
+  max-width:1180px;
+  margin-inline:auto;
+  padding-inline:2rem;
+  font-family:"Inter", Arial, sans-serif;
+  color:#0d213c;
+}
+
+/* --- Individual item (Vision / Mission) --- */
+.vm-item{
+  display:flex;
+  align-items:flex-start;
+  gap:4rem;                  /* відстань між колонками */
+  margin-bottom:4.5rem;
+}
+
+/* left column – heading */
+.vm-heading{
+  flex:0 0 28%;              /* фіксована ширина 28% */
+  font-size:2.6rem;
+  line-height:1.15;
+  font-weight:700;
+  margin:0;                  /* скидання стандартних відступів */
+}
+
+/* right column – icon + text */
+.vm-content{
+  flex:1;
+  max-width:640px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:1.75rem;               /* відстань між іконкою та абзацом */
+}
+
+.vm-icon{
+  width:96px;
+  aspect-ratio:1/1;
+  object-fit:contain;
+  filter:drop-shadow(0 4px 10px rgba(13,33,60,.05));
+}
+
+.vm-content p{
+  font-size:1.05rem;
+  line-height:1.7;
+  margin:0;
+  color:#556070;
+}
+
+/* тонка горизонтальна лінія */
+.vm-divider{
+  border:none;
+  border-top:1px solid #e5e8ec;
+  margin:4rem 0;
+}
+
+/* --- Responsive --- */
+@media (max-width:900px){
+  .vm-item{
+    gap:2.5rem;
+  }
+  .vm-heading{
+    flex:0 0 35%;
+    font-size:2.2rem;
+  }
 }
