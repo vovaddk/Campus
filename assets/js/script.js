@@ -127,3 +127,49 @@ document.addEventListener('DOMContentLoaded', function () {
     new SliderManager(`#${container.id} .slider-container`);
   });
 });
+// constants: отступы для кружечка, текста и дополнительный для реверса
+const BULLET_RADIUS = 6; // половина кружечка 12px
+const GAP = 8; // відступ від краю кружечка до тексту
+
+function updateNormalItems(centerX) {
+  document
+    .querySelectorAll(
+      '.history__item:not(.history__item--reverse) .history__item-date'
+    )
+    .forEach((el) => {
+      const { left: dateLeft } = el.getBoundingClientRect();
+      const raw = centerX - dateLeft;
+      const length = Math.max(0, Math.abs(raw) - BULLET_RADIUS - GAP);
+      el.style.setProperty('--line-start', `${raw}px`);
+      el.style.setProperty('--line-length', `${length}px`);
+    });
+}
+
+function updateReverseItems(centerX) {
+  document
+    .querySelectorAll('.history__item--reverse .history__item-date')
+    .forEach((el) => {
+      const { left: dateLeft, width: dateWidth } = el.getBoundingClientRect();
+      const raw = centerX - dateLeft;
+      // віднімаємо ширину дати + радіус кружечка + GAP
+      const length = Math.max(
+        0,
+        Math.abs(raw) - dateWidth - BULLET_RADIUS - GAP
+      );
+      el.style.setProperty('--line-start', `${raw}px`);
+      el.style.setProperty('--line-length', `${length}px`);
+    });
+}
+
+function updateTimelineLines() {
+  const tl = document.querySelector('.history__timeline');
+  if (!tl) return;
+  const { left, width } = tl.getBoundingClientRect();
+  const centerX = left + width / 2;
+
+  updateNormalItems(centerX);
+  updateReverseItems(centerX);
+}
+
+window.addEventListener('DOMContentLoaded', updateTimelineLines);
+window.addEventListener('resize', updateTimelineLines);
