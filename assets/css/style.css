@@ -194,32 +194,7 @@ html {
 }
 
 /* --- Адаптивність (Приклад для мобільних пристроїв) --- */
-@media (max-width: 768px) {
-  .header-nav {
-    flex-direction: column;
-  }
-  .nav ul {
-    flex-direction: column;
-    align-items: center;
-    margin-top: 15px;
-  }
-  .nav li {
-    margin: 8px 0;
-  }
-  .btn-donate-header {
-    margin-top: 15px;
-  }
-  .hero-content h1 {
-    font-size: 36px;
-  }
-  .hero-buttons {
-    flex-direction: column;
-    align-items: center;
-  }
-  .btn {
-    width: 60%;
-  }
-}
+
 /* --- Стилі для Секції збору коштів --- */
 .fundraising-section {
   padding: 80px 0;
@@ -1710,15 +1685,6 @@ div.icon > svg {
   color: #4c4c4c;
 }
 
-/* ====== Адаптив ====== */
-@media (max-width: 768px) {
-  .gallery-testimonial__gallery {
-    flex-direction: column;
-  }
-  .gallery-testimonial__image {
-    margin-bottom: 20px;
-  }
-}
 /* ======= Topics Section ======= */
 .topics-section {
   width: 100%;
@@ -1805,15 +1771,7 @@ div.icon > svg {
 }
 
 /* ===== Адаптив ===== */
-@media (max-width: 768px) {
-  .topics-list {
-    grid-template-columns: 1fr;
-  }
-  .carousel__slide {
-    min-width: 100%;
-    padding-right: 0;
-  }
-}
+
 /* ===== Follow our news ===== */
 .follow-news {
   width: 100%;
@@ -2017,69 +1975,356 @@ div.icon > svg {
   transform-origin: left center;
 }
 /* --- Layout wrapper --- */
-.vm-block{
-  max-width:1180px;
-  margin-inline:auto;
-  padding-inline:2rem;
-  font-family:"Inter", Arial, sans-serif;
-  color:#0d213c;
+.vm-block {
+  max-width: 1180px;
+  margin-inline: auto;
+  padding-inline: 2rem;
+  font-family: 'Inter', Arial, sans-serif;
+  color: #0d213c;
 }
 
 /* --- Individual item (Vision / Mission) --- */
-.vm-item{
-  display:flex;
-  align-items:flex-start;
-  gap:4rem;                  /* відстань між колонками */
-  margin-bottom:4.5rem;
+.vm-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 4rem; /* відстань між колонками */
+  margin-bottom: 4.5rem;
 }
 
 /* left column – heading */
-.vm-heading{
-  flex:0 0 28%;              /* фіксована ширина 28% */
-  font-size:2.6rem;
-  line-height:1.15;
-  font-weight:700;
-  margin:0;                  /* скидання стандартних відступів */
+.vm-heading {
+  flex: 0 0 28%; /* фіксована ширина 28% */
+  font-size: 2.6rem;
+  line-height: 1.15;
+  font-weight: 700;
+  margin: 0; /* скидання стандартних відступів */
 }
 
 /* right column – icon + text */
-.vm-content{
-  flex:1;
-  max-width:640px;
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-  gap:1.75rem;               /* відстань між іконкою та абзацом */
+.vm-content {
+  flex: 1;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.75rem; /* відстань між іконкою та абзацом */
 }
 
-.vm-icon{
-  width:96px;
-  aspect-ratio:1/1;
-  object-fit:contain;
-  filter:drop-shadow(0 4px 10px rgba(13,33,60,.05));
+.vm-icon {
+  width: 96px;
+  aspect-ratio: 1/1;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 10px rgba(13, 33, 60, 0.05));
 }
 
-.vm-content p{
-  font-size:1.05rem;
-  line-height:1.7;
-  margin:0;
-  color:#556070;
+.vm-content p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin: 0;
+  color: #556070;
 }
 
 /* тонка горизонтальна лінія */
-.vm-divider{
-  border:none;
-  border-top:1px solid #e5e8ec;
-  margin:4rem 0;
+.vm-divider {
+  border: none;
+  border-top: 1px solid #e5e8ec;
+  margin: 4rem 0;
+}
+/* ===== Блок з текстом і фото ===== */
+.plans-visual-block {
+  background: var(--bg);
+  padding-block: clamp(48px, 8vw, 96px);
+  color: var(--text);
+  font-family: var(--font-main);
+  line-height: 1.6;
 }
 
-/* --- Responsive --- */
-@media (max-width:900px){
-  .vm-item{
-    gap:2.5rem;
-  }
-  .vm-heading{
-    flex:0 0 35%;
-    font-size:2.2rem;
-  }
+.plans-visual-block__container {
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--pad);
+}
+
+.plans-visual-block__copy {
+  max-width: 900px;
+  margin-bottom: clamp(32px, 6vw, 56px);
+}
+
+.plans-visual-block__copy p {
+  margin: 0 0 1.2em 0;
+  font-size: clamp(16px, 1.15vw + 0.6rem, 20px);
+  color: var(--muted);
+}
+
+.plans-visual-block__lead {
+  color: var(--text);
+  font-size: clamp(18px, 1.25vw + 0.8rem, 22px);
+  line-height: 1.7;
+  margin-bottom: 1.2em;
+}
+
+.plans-visual-block__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap);
+  align-items: stretch;
+}
+
+.plans-visual-block__item {
+  margin: 0;
+}
+
+.plans-visual-block__item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+/* ===== Блок з цитатою і списком ===== */
+.plans-visual-quote {
+  padding-block: clamp(48px, 8vw, 96px);
+  font-family: var(--font-main);
+}
+
+.plans-visual-quote__container {
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--pad);
+}
+
+.plans-visual-quote__box {
+  background: var(--bg-light);
+  padding: clamp(24px, 4vw, 48px);
+  border-radius: 4px;
+  text-align: center;
+  margin-bottom: clamp(40px, 6vw, 64px);
+}
+
+.plans-visual-quote__text {
+  font-size: clamp(20px, 1.5vw + 0.8rem, 28px);
+  font-weight: 600;
+  color: var(--text-dark);
+  margin: 0 0 24px;
+  line-height: 1.4;
+}
+
+.plans-visual-quote__author {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.plans-visual-quote__author-img {
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+}
+
+.plans-visual-quote__author-name {
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--text-dark);
+}
+
+.plans-visual-quote__author-role {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.plans-visual-quote__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.plans-visual-quote__list li {
+  font-size: clamp(16px, 1.1vw + 0.6rem, 18px);
+  color: var(--muted);
+  position: relative;
+  padding-left: 28px;
+}
+
+.plans-visual-quote__list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--accent);
+  font-weight: bold;
+}
+/* --- GALLERY + TEXT --- */
+:root {
+  --container: 1140px;
+  --pad: clamp(16px, 2vw, 24px);
+  --gap: clamp(20px, 3vw, 36px);
+  --radius: 12px;
+  --text: #1b1b1b;
+  --muted: #4b4b4b;
+  --font-main: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+  --divider: #f6b300;
+}
+
+.plans-visual-gallerytext {
+  padding-block: clamp(48px, 8vw, 96px);
+  font-family: var(--font-main);
+  color: var(--text);
+}
+
+.plans-visual-gallerytext__container {
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--pad);
+}
+
+.plans-visual-gallerytext__hero {
+  margin: 0 0 clamp(40px, 6vw, 64px) 0;
+}
+
+.plans-visual-gallerytext__hero img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  display: block;
+  object-fit: cover;
+}
+
+.plans-visual-gallerytext__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap);
+  margin-bottom: clamp(40px, 8vw, 80px);
+}
+
+.plans-visual-gallerytext__item {
+  margin: 0;
+}
+
+.plans-visual-gallerytext__item img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius);
+  display: block;
+}
+
+.plans-visual-gallerytext__copy {
+  max-width: 760px;
+  margin-inline: auto;
+  line-height: 1.7;
+}
+
+.plans-visual-gallerytext__copy p {
+  margin: 0 0 1.4em 0;
+  color: var(--muted);
+  font-size: clamp(16px, 1.15vw + 0.6rem, 20px);
+}
+
+.plans-visual-contacts {
+  padding-block: clamp(48px, 8vw, 96px);
+  font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+  color: var(--ink);
+}
+
+.plans-visual-contacts__container {
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--pad);
+}
+
+/* ====== Grid + dividers ====== */
+.plans-visual-contacts__grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: clamp(28px, 6vw, 64px) clamp(28px, 6vw, 64px);
+}
+
+/* вертикальна і горизонтальна лінії по центру */
+.plans-visual-contacts__grid::before,
+.plans-visual-contacts__grid::after {
+  content: '';
+  position: absolute;
+  background: var(--divider);
+}
+.plans-visual-contacts__grid::before {
+  /* вертикальна */
+  width: 2px;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-1px);
+}
+.plans-visual-contacts__grid::after {
+  /* горизонтальна */
+  height: 2px;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-1px);
+}
+
+/* ====== Item ====== */
+.plans-visual-contacts__item {
+  text-align: center;
+  padding: 8px 4px;
+}
+
+.plans-visual-contacts__icon {
+  color: var(--icon);
+  margin: 0 auto 14px;
+  line-height: 0; /* прибирає зайві відступи біля SVG */
+}
+
+.plans-visual-contacts__label {
+  color: var(--muted);
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.plans-visual-contacts__value {
+  color: var(--ink);
+  font-weight: 700;
+  font-size: clamp(18px, 1.2vw + 0.6rem, 22px);
+  line-height: 1.5;
+}
+
+/* лінки (email, телефон) */
+.plans-visual-contacts__link {
+  color: var(--link);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.plans-visual-contacts__link:hover {
+  color: var(--link-hover);
+  border-color: var(--link-hover);
+}
+
+/* соцмережі */
+.plans-visual-contacts__social {
+  display: inline-flex;
+  gap: 14px;
+  justify-content: center;
+}
+.plans-visual-contacts__social-link {
+  color: var(--ink);
+  opacity: 0.9;
+  transition: opacity 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+.plans-visual-contacts__social-link:hover {
+  color: var(--link-hover);
+  opacity: 1;
+  transform: translateY(-1px);
 }
