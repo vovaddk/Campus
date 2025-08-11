@@ -2,27 +2,43 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Construction Capital Campaign</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="assets/css/style.css" />
-    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/media.css" />
   </head>
   <body>
     <header class="header">
       <div class="container">
         <div class="header-nav">
           <a href="#" class="logo">Construction</a>
+
+          <!-- Кнопка бургер -->
+          <div class="burger" id="burger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <!-- Десктопна навігація -->
           <nav class="nav">
             <ul>
               <li><a href="#" class="active">Home</a></li>
               <li><a href="#">About us</a></li>
-              <li class="dropdown">
-                <a href="objective.html">Objectives</a>
-              </li>
+              <li><a href="objective.html">Objectives</a></li>
               <li><a href="#">Plans and visualization</a></li>
               <li><a href="#">Contact us</a></li>
-              <li><a href="#">Project progress</a></li>
+              <li><a href="project.html">Project progress</a></li>
             </ul>
           </nav>
+
           <a href="#" class="btn btn-donate-header">
             Donate Now
             <span class="donate-icon"
@@ -55,10 +71,31 @@
         </div>
       </div>
     </header>
+
+    <!-- Мобільне меню -->
+    <div class="mobile-menu" id="mobileMenu">
+      <nav>
+        <ul>
+          <li><a href="#" class="active">Home</a></li>
+          <li><a href="#">About us</a></li>
+          <li><a href="objective.html">Objectives</a></li>
+          <li><a href="#">Plans and visualization</a></li>
+          <li><a href="#">Contact us</a></li>
+          <li><a href="project.html">Project progress</a></li>
+        </ul>
+      </nav>
+      <a href="#" class="btn btn-donate-header">Donate Now</a>
+    </div>
+
     <main class="hero-section">
+      <img
+        src="assets/img/background-1.jpg"
+        alt="Hero background"
+        class="hero-bg"
+      />
       <div class="hero-overlay"></div>
       <div class="container hero-content">
-        <h1>The War Destroyed Our Campus -<br />But Not Our Mission</h1>
+        <h1>Capital project objectives</h1>
         <div class="hero-buttons">
           <a href="#" class="btn btn-primary">Donate Now</a>
           <a href="#" class="btn btn-secondary">Subscribe</a>
@@ -67,153 +104,287 @@
     </main>
     <div class="container">
       <section class="article-meta">
-  <div class="article-meta__top">
-    <div class="article-meta__date">
-      <span class="article-meta__label">Опубліковано:</span>
-      <time datetime="2025-07-29">July 29 2025</time>
+        <div class="article-meta__top">
+          <div class="article-meta__date">
+            <span class="article-meta__label">Опубліковано:</span>
+            <time datetime="2025-07-29">July 29 2025</time>
+          </div>
+          <div class="article-meta__share">
+            <span class="article-meta__label">Поширити:</span>
+            <ul class="share-list">
+              <li class="share-list__item share-list__item--facebook">
+                <a href="#" aria-label="Share on Facebook"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                  >
+                    <path
+                      d="M11.6663 11.25H13.7497L14.583 7.91663H11.6663V6.24996C11.6663 5.39214 11.6663 4.58329 13.333 4.58329H14.583V1.78338C14.3116 1.74733 13.2855 1.66663 12.2021 1.66663C9.94001 1.66663 8.33301 3.04734 8.33301 5.58305V7.91663H5.83301V11.25H8.33301V18.3333H11.6663V11.25Z"
+                      fill="#FFD43B"
+                    /></svg
+                ></a>
+              </li>
+              <li class="share-list__item share-list__item--instagram">
+                <a href="#" aria-label="Share on Instagram"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                  >
+                    <path
+                      d="M10.8572 1.66724C11.7951 1.66879 12.2703 1.67375 12.681 1.68598L12.8427 1.69126C13.0296 1.6979 13.2139 1.70624 13.4362 1.71665C14.3229 1.75763 14.9278 1.8979 15.4591 2.10415C16.0083 2.31596 16.4722 2.60207 16.9354 3.06527C17.3979 3.52846 17.6841 3.99374 17.8966 4.54165C18.1021 5.07221 18.2424 5.67777 18.2841 6.56457C18.294 6.78679 18.302 6.97113 18.3086 7.15799L18.3138 7.31974C18.326 7.73035 18.3316 8.20568 18.3333 9.14354L18.334 9.76488C18.3341 9.8408 18.3341 9.91913 18.3341 9.99996L18.334 10.235L18.3335 10.8565C18.3319 11.7943 18.327 12.2696 18.3147 12.6802L18.3094 12.842C18.3028 13.0289 18.2945 13.2132 18.2841 13.4354C18.2431 14.3222 18.1021 14.927 17.8966 15.4583C17.6847 16.0076 17.3979 16.4715 16.9354 16.9347C16.4722 17.3972 16.0062 17.6833 15.4591 17.8958C14.9278 18.1014 14.3229 18.2416 13.4362 18.2833C13.2139 18.2932 13.0296 18.3013 12.8427 18.3078L12.681 18.313C12.2703 18.3253 11.7951 18.3308 10.8572 18.3326L10.2358 18.3333C10.1599 18.3333 10.0816 18.3333 10.0007 18.3333H9.76565L9.14424 18.3327C8.2064 18.3312 7.73109 18.3262 7.32046 18.314L7.15873 18.3087C6.97185 18.302 6.78752 18.2937 6.5653 18.2833C5.67849 18.2424 5.07433 18.1014 4.54239 17.8958C3.99377 17.684 3.52919 17.3972 3.06599 16.9347C2.6028 16.4715 2.31739 16.0055 2.10489 15.4583C1.89864 14.927 1.75905 14.3222 1.71739 13.4354C1.70749 13.2132 1.69941 13.0289 1.69287 12.842L1.68763 12.6802C1.67544 12.2696 1.66988 11.7943 1.66808 10.8565L1.66797 9.14354C1.66952 8.20568 1.67448 7.73035 1.6867 7.31974L1.69199 7.15799C1.69864 6.97113 1.70697 6.78679 1.71739 6.56457C1.75835 5.67707 1.89864 5.0729 2.10489 4.54165C2.31669 3.99304 2.6028 3.52846 3.06599 3.06527C3.52919 2.60207 3.99447 2.31665 4.54239 2.10415C5.07364 1.8979 5.6778 1.75832 6.5653 1.71665C6.78752 1.70676 6.97185 1.69869 7.15873 1.69214L7.32046 1.6869C7.73109 1.6747 8.2064 1.66914 9.14424 1.66734L10.8572 1.66724ZM10.0007 5.83332C7.6983 5.83332 5.83405 7.69959 5.83405 9.99996C5.83405 12.3024 7.70033 14.1666 10.0007 14.1666C12.3032 14.1666 14.1674 12.3004 14.1674 9.99996C14.1674 7.69757 12.3011 5.83332 10.0007 5.83332ZM10.0007 7.49999C11.3815 7.49999 12.5007 8.61888 12.5007 9.99996C12.5007 11.3807 11.3818 12.5 10.0007 12.5C8.61999 12.5 7.50072 11.3811 7.50072 9.99996C7.50072 8.61921 8.61957 7.49999 10.0007 7.49999ZM14.3757 4.58332C13.8013 4.58332 13.3341 5.04991 13.3341 5.62428C13.3341 6.19865 13.8007 6.66596 14.3757 6.66596C14.9501 6.66596 15.4174 6.19938 15.4174 5.62428C15.4174 5.04991 14.9493 4.5826 14.3757 4.58332Z"
+                      fill="#FFD43B"
+                    /></svg
+                ></a>
+              </li>
+              <li class="share-list__item share-list__item--telegram">
+                <a href="#" aria-label="Share on Telegram"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                  >
+                    <path
+                      d="M1.78977 9.84155C6.16258 7.93641 9.0785 6.68041 10.5374 6.07357C14.7031 4.34093 15.5687 4.03995 16.1328 4.03001C16.2569 4.02783 16.5344 4.05858 16.7141 4.20441C16.8658 4.32755 16.9076 4.49389 16.9276 4.61063C16.9476 4.72738 16.9724 4.99333 16.9527 5.20113C16.7269 7.57299 15.7502 13.3289 15.2532 15.9854C15.043 17.1095 14.629 17.4863 14.2282 17.5232C13.3571 17.6034 12.6956 16.9475 11.8519 16.3945C10.5317 15.5291 9.78591 14.9904 8.50441 14.1459C7.02345 13.17 7.9835 12.6335 8.8275 11.757C9.04841 11.5275 12.8864 8.0366 12.9607 7.71992C12.9699 7.68031 12.9786 7.53268 12.8908 7.45472C12.8032 7.37676 12.6737 7.40342 12.5803 7.42463C12.4479 7.45468 10.3388 8.84863 6.2532 11.6066C5.65456 12.0176 5.11234 12.218 4.62652 12.2075C4.09094 12.1959 3.0607 11.9046 2.29483 11.6557C1.35545 11.3503 0.608856 11.1889 0.673868 10.6703C0.70773 10.4002 1.0797 10.124 1.78977 9.84155Z"
+                      fill="#FFD43B"
+                    /></svg
+                ></a>
+              </li>
+              <li class="share-list__item share-list__item--linkedin">
+                <a href="#" aria-label="Share on LinkedIn"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                  >
+                    <path
+                      d="M5.78357 4.16657C5.78326 4.84516 5.37157 5.45581 4.74262 5.71057C4.11367 5.96533 3.39306 5.81333 2.92059 5.32625C2.44811 4.83916 2.31813 4.11425 2.59192 3.49335C2.86572 2.87245 3.48862 2.47954 4.1669 2.4999C5.0678 2.52694 5.78398 3.26527 5.78357 4.16657ZM5.83357 7.06657H2.50024V17.4999H5.83357V7.06657ZM11.1003 7.06657H7.78357V17.4999H11.0669V12.0249C11.0669 8.97488 15.0419 8.69154 15.0419 12.0249V17.4999H18.3336V10.8915C18.3336 5.7499 12.4503 5.94157 11.0669 8.46654L11.1003 7.06657Z"
+                      fill="#FFD43B"
+                    /></svg
+                ></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="article-content">
+          <p>
+            In this difficult time, when war daily tests the endurance and
+            emotional health of the Ukrainian people, the Ukrainian Evangelical
+            Theological Seminary (UETS) continues to be a center of hope,
+            healing, and restoration.
+          </p>
+          <p>
+            On June 28, the Artkaleidoscope conference was held at the UETS — a
+            dynamic meeting of practitioners, educators, and specialists who
+            work with faith, united by the belief that art has the power to
+            transform a person, helps overcome trauma, and emotionally recover.
+          </p>
+        </div>
+      </section>
+      <section class="gallery-testimonial">
+        <!-- 1. Два зображення в ряд -->
+        <div class="gallery-testimonial__gallery">
+          <div class="gallery-testimonial__image">
+            <img src="assets/img/image 1.png" alt="Team working at laptops" />
+          </div>
+          <div class="gallery-testimonial__image">
+            <img src="assets/img/image 2.png" alt="Team working at laptops" />
+          </div>
+        </div>
+
+        <!-- 2. Блок відгуку -->
+        <div class="gallery-testimonial__testimonial">
+          <blockquote class="testimonial">
+            “This campaign represents more than building walls; it’s about
+            building a legacy of faith that will impact generations to come.”
+          </blockquote>
+          <div class="testimonial__author">
+            <img src="assets/img/seniour.jpg" alt="Team working at laptops" />
+            <div class="testimonial__info">
+              <div class="testimonial__name">Pastor John Smith</div>
+              <div class="testimonial__role">Senior Pastor</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="topics-section">
+        <!-- Заголовок -->
+        <h2 class="topics-section__title">Key topics of the speakers</h2>
+
+        <!-- Нумерований список у дві колонки -->
+        <ol class="topics-list">
+          <li>
+            “Art Therapy for Military Families — Support Through Creativity,”
+            Victoria Ulyanova
+          </li>
+          <li>
+            “Emotional Stability of Parents of Children with Special Needs:
+            Techniques and Tools,” Victoria Khromets
+          </li>
+          <li>“Trust as an Inner Lantern,” Lilia Kagan</li>
+          <li>
+            “Psychotherapeutic tools for crisis work with children and adults in
+            wartime,” Oksana Hrytsyuta
+          </li>
+          <li>
+            “Art Therapy for Military Families — Support Through Creativity,”
+            Victoria Ulyanova
+          </li>
+          <li>
+            “Emotional Stability of Parents of Children with Special Needs:
+            Techniques and Tools,” Victoria Khromets
+          </li>
+          <li>“Trust as an Inner Lantern,” Lilia Kagan</li>
+          <li>
+            “Psychotherapeutic tools for crisis work with children and adults in
+            wartime,” Oksana Hrytsyuta
+          </li>
+        </ol>
+
+        <!-- Карусель з зображеннями -->
+        <!-- Два зображення в ряд без каруселі -->
+        <div class="topics-slider" id="topicsSlider">
+          <div class="topics-images">
+            <div class="topics-images__item is-active">
+              <img src="assets/img/1.png" alt="Team working at laptops" />
+            </div>
+            <div class="topics-images__item">
+              <img src="assets/img/2.jpg" alt="Team working at laptops" />
+            </div>
+          </div>
+
+          <div class="topics-controls">
+            <button
+              class="topics-btn topics-prev"
+              type="button"
+              aria-label="Previous"
+            >
+              <!-- ← іконка -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="25"
+                height="24"
+                viewBox="0 0 25 24"
+                fill="none"
+              >
+                <path
+                  d="M14.4995 17.2892C14.8895 16.8992 14.8895 16.2692 14.4995 15.8792L10.6195 11.9992L14.4995 8.11925C14.8895 7.72925 14.8895 7.09925 14.4995 6.70925C14.1095 6.31925 13.4795 6.31925 13.0895 6.70925L8.49949 11.2992C8.10949 11.6892 8.10949 12.3192 8.49949 12.7092L13.0895 17.2992C13.4695 17.6792 14.1095 17.6792 14.4995 17.2892Z"
+                  fill="#D0DCE6"
+                />
+              </svg>
+            </button>
+            <button
+              class="topics-btn topics-next"
+              type="button"
+              aria-label="Next"
+            >
+              <!-- → іконка -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="25"
+                height="24"
+                viewBox="0 0 25 24"
+                fill="none"
+              >
+                <path
+                  d="M10.5005 6.71075C10.1105 7.10075 10.1105 7.73075 10.5005 8.12075L14.3805 12.0008L10.5005 15.8808C10.1105 16.2708 10.1105 16.9008 10.5005 17.2908C10.8905 17.6808 11.5205 17.6808 11.9105 17.2908L16.5005 12.7008C16.8905 12.3108 16.8905 11.6808 16.5005 11.2908L11.9105 6.70075C11.5305 6.32075 10.8905 6.32075 10.5005 6.71075Z"
+                  fill="#D0DCE6"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Контрольний список з іконками -->
+        <ul class="topics-checklist">
+          <li>
+            “Art Therapy for Military Families — Support Through Creativity,”
+            Victoria Ulyanova
+          </li>
+          <li>
+            “Emotional Stability of Parents of Children with Special Needs:
+            Techniques and Tools,” Victoria Khromets
+          </li>
+          <li>“Trust as an Inner Lantern,” Lilia Kagan</li>
+          <li>
+            “Psychotherapeutic tools for crisis work with children and adults in
+            wartime,” Oksana Hrytsyuta
+          </li>
+        </ul>
+      </section>
+
+      <section class="follow-news">
+        <h2 class="follow-news__title">Follow our news</h2>
+        <div class="follow-news__grid">
+          <article class="follow-news__card">
+            <div class="follow-news__media">
+              <img src="assets/img/1.png" alt="Team working at laptops" />
+            </div>
+            <div class="follow-news__body">
+              <time class="follow-news__date">July 29 2025</time>
+              <h3 class="follow-news__headline">
+                Artkaleidoscope: the power of creativity in times of war
+              </h3>
+              <p class="follow-news__excerpt">
+                In these difficult times, when war daily tests the endurance and
+                emotional health of the Ukrainian people
+              </p>
+              <a href="#" class="follow-news__link">Read more</a>
+            </div>
+          </article>
+
+          <article class="follow-news__card">
+            <div class="follow-news__media">
+              <img src="assets/img/1.png" alt="Team working at laptops" />
+            </div>
+            <div class="follow-news__body">
+              <time class="follow-news__date">July 29 2025</time>
+              <h3 class="follow-news__headline">
+                Artkaleidoscope: the power of creativity in times of war
+              </h3>
+              <p class="follow-news__excerpt">
+                In these difficult times, when war daily tests the endurance and
+                emotional health of the Ukrainian people
+              </p>
+              <a href="#" class="follow-news__link">Read more</a>
+            </div>
+          </article>
+
+          <article class="follow-news__card">
+            <div class="follow-news__media">
+              <img src="assets/img/1.png" alt="Team working at laptops" />
+            </div>
+            <div class="follow-news__body">
+              <time class="follow-news__date">July 29 2025</time>
+              <h3 class="follow-news__headline">
+                Artkaleidoscope: the power of creativity in times of war
+              </h3>
+              <p class="follow-news__excerpt">
+                In these difficult times, when war daily tests the endurance and
+                emotional health of the Ukrainian people
+              </p>
+              <a href="#" class="follow-news__link">Read more</a>
+            </div>
+          </article>
+        </div>
+      </section>
     </div>
-    <div class="article-meta__share">
-      <span class="article-meta__label">Поширити:</span>
-      <ul class="share-list">
-        <li class="share-list__item share-list__item--facebook">
-          <a href="#" aria-label="Share on Facebook"><!-- іконка --></a>
-        </li>
-        <li class="share-list__item share-list__item--instagram">
-          <a href="#" aria-label="Share on Instagram"></a>
-        </li>
-        <li class="share-list__item share-list__item--telegram">
-          <a href="#" aria-label="Share on Telegram"></a>
-        </li>
-        <li class="share-list__item share-list__item--linkedin">
-          <a href="#" aria-label="Share on LinkedIn"></a>
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="article-content">
-    <p>In this difficult time, when war daily tests the endurance and emotional health of the Ukrainian people, the Ukrainian Evangelical Theological Seminary (UETS) continues to be a center of hope, healing, and restoration.</p>
-    <p>On June 28, the Artkaleidoscope conference was held at the UETS — a dynamic meeting of practitioners, educators, and specialists who work with faith, united by the belief that art has the power to transform a person, helps overcome trauma, and emotionally recover.</p>
-  </div>
-</section>
-<section class="gallery-testimonial">
-  <!-- 1. Два зображення в ряд -->
-  <div class="gallery-testimonial__gallery">
-    <div class="gallery-testimonial__image">
-      <img src="path/to/image1.jpg" alt="Team working at laptops">
-    </div>
-    <div class="gallery-testimonial__image">
-      <img src="path/to/image2.jpg" alt="Group outdoors">
-    </div>
-  </div>
-
-  <!-- 2. Блок відгуку -->
-  <div class="gallery-testimonial__testimonial">
-    <blockquote class="testimonial">
-      “This campaign represents more than building walls; it’s about building a legacy of faith that will impact generations to come.”
-    </blockquote>
-    <div class="testimonial__author">
-      <img class="testimonial__avatar" src="path/to/avatar.jpg" alt="Pastor John Smith">
-      <div class="testimonial__info">
-        <div class="testimonial__name">Pastor John Smith</div>
-        <div class="testimonial__role">Senior Pastor</div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="topics-section">
-  <!-- Заголовок -->
-  <h2 class="topics-section__title">Key topics of the speakers</h2>
-
-  <!-- Нумерований список у дві колонки -->
-  <ol class="topics-list">
-    <li>“Art Therapy for Military Families — Support Through Creativity,” Victoria Ulyanova</li>
-    <li>“Emotional Stability of Parents of Children with Special Needs: Techniques and Tools,” Victoria Khromets</li>
-    <li>“Trust as an Inner Lantern,” Lilia Kagan</li>
-    <li>“Psychotherapeutic tools for crisis work with children and adults in wartime,” Oksana Hrytsyuta</li>
-    <li>“Art Therapy for Military Families — Support Through Creativity,” Victoria Ulyanova</li>
-    <li>“Emotional Stability of Parents of Children with Special Needs: Techniques and Tools,” Victoria Khromets</li>
-    <li>“Trust as an Inner Lantern,” Lilia Kagan</li>
-    <li>“Psychotherapeutic tools for crisis work with children and adults in wartime,” Oksana Hrytsyuta</li>
-  </ol>
-
-  <!-- Карусель з зображеннями -->
-<!-- Два зображення в ряд без каруселі -->
-<div class="topics-images">
-  <div class="topics-images__item">
-    <img src="path/to/image1.jpg" alt="Team working at laptops">
-  </div>
-  <div class="topics-images__item">
-    <img src="path/to/image2.jpg" alt="Group outdoors">
-  </div>
-</div>
-
-
-  <!-- Контрольний список з іконками -->
-  <ul class="topics-checklist">
-    <li>“Art Therapy for Military Families — Support Through Creativity,” Victoria Ulyanova</li>
-    <li>“Emotional Stability of Parents of Children with Special Needs: Techniques and Tools,” Victoria Khromets</li>
-    <li>“Trust as an Inner Lantern,” Lilia Kagan</li>
-    <li>“Psychotherapeutic tools for crisis work with children and adults in wartime,” Oksana Hrytsyuta</li>
-  </ul>
-</section>
-
-   <section class="follow-news">
-  <h2 class="follow-news__title">Follow our news</h2>
-  <div class="follow-news__grid">
-    <article class="follow-news__card">
-      <div class="follow-news__media">
-        <img src="path/to/image1.jpg" alt="Artkaleidoscope">
-      </div>
-      <div class="follow-news__body">
-        <time class="follow-news__date">July 29 2025</time>
-        <h3 class="follow-news__headline">
-          Artkaleidoscope: the power of creativity in times of war
-        </h3>
-        <p class="follow-news__excerpt">
-          In these difficult times, when war daily tests the endurance and emotional health of the Ukrainian people
-        </p>
-        <a href="#" class="follow-news__link">Read more</a>
-      </div>
-    </article>
-
-    <article class="follow-news__card">
-      <div class="follow-news__media">
-        <img src="path/to/image2.jpg" alt="Artkaleidoscope">
-      </div>
-      <div class="follow-news__body">
-        <time class="follow-news__date">July 29 2025</time>
-        <h3 class="follow-news__headline">
-          Artkaleidoscope: the power of creativity in times of war
-        </h3>
-        <p class="follow-news__excerpt">
-          In these difficult times, when war daily tests the endurance and emotional health of the Ukrainian people
-        </p>
-        <a href="#" class="follow-news__link">Read more</a>
-      </div>
-    </article>
-
-    <article class="follow-news__card">
-      <div class="follow-news__media">
-        <img src="path/to/image3.jpg" alt="Artkaleidoscope">
-      </div>
-      <div class="follow-news__body">
-        <time class="follow-news__date">July 29 2025</time>
-        <h3 class="follow-news__headline">
-          Artkaleidoscope: the power of creativity in times of war
-        </h3>
-        <p class="follow-news__excerpt">
-          In these difficult times, when war daily tests the endurance and emotional health of the Ukrainian people
-        </p>
-        <a href="#" class="follow-news__link">Read more</a>
-      </div>
-    </article>
-  </div>
-</section>
-
-
-</div>
     <section class="subscribe-section">
+      <img
+        src="assets/img/footer-image.jpg"
+        alt="Subscribe background"
+        class="subscribe-bg"
+      />
       <div class="overlay"></div>
       <div class="subscribe-container">
         <h2>Subscribe to news</h2>
@@ -259,4 +430,5 @@
       </div>
     </footer>
   </body>
+  <script src="assets/js/script.js"></script>
 </html>

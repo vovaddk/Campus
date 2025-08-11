@@ -159,3 +159,133 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+document.addEventListener('DOMContentLoaded', () => {
+  const nav = document.querySelector('.news-nav');
+  const controls = document.querySelector('.news-controls');
+  if (!nav || !controls) return;
+
+  const links = Array.from(nav.querySelectorAll('.news-nav__item'));
+  const active =
+    links.find((a) => a.classList.contains('news-nav__item--active')) ||
+    links[0];
+
+  // створюємо "коробку" в .news-controls (тут і кнопка, і меню)
+  const box = document.createElement('div');
+  box.className = 'news-nav-box';
+  controls.appendChild(box);
+
+  // кнопка-псевдо select
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'news-nav__select';
+  btn.setAttribute('aria-haspopup', 'listbox');
+  btn.setAttribute('aria-expanded', 'false');
+  btn.textContent = active ? active.textContent.trim() : 'All news';
+
+  // меню з пунктами
+  const menu = document.createElement('div');
+  menu.className = 'news-nav__menu';
+  menu.setAttribute('role', 'listbox');
+
+  links.forEach((a) => {
+    const opt = document.createElement('a');
+    opt.href = a.getAttribute('href') || '#';
+    opt.className =
+      'news-nav__item' +
+      (a.classList.contains('news-nav__item--active')
+        ? ' news-nav__item--active'
+        : '');
+    opt.textContent = a.textContent.trim();
+    opt.setAttribute('role', 'option');
+    if (a.classList.contains('news-nav__item--active'))
+      opt.setAttribute('aria-selected', 'true');
+
+    opt.addEventListener('click', (e) => {
+      e.preventDefault(); // зніми, якщо потрібен перехід за посиланням
+      links.forEach((l) => l.classList.remove('news-nav__item--active'));
+      a.classList.add('news-nav__item--active');
+
+      menu.querySelectorAll('a').forEach((x) => {
+        x.classList.remove('news-nav__item--active');
+        x.removeAttribute('aria-selected');
+      });
+      opt.classList.add('news-nav__item--active');
+      opt.setAttribute('aria-selected', 'true');
+
+      btn.textContent = opt.textContent.trim();
+      box.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+
+    menu.appendChild(opt);
+  });
+
+  box.append(btn, menu);
+
+  // відкриття/закриття
+  btn.addEventListener('click', () => {
+    const open = box.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+  document.addEventListener('click', (e) => {
+    if (!box.contains(e.target)) {
+      box.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      box.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      btn.focus();
+    }
+  });
+});
+document.addEventListener('DOMContentLoaded', function () {
+  const slider = document.getElementById('topicsSlider');
+  if (!slider) return;
+
+  const items = Array.from(slider.querySelectorAll('.topics-images__item'));
+  const prev = slider.querySelector('.topics-prev');
+  const next = slider.querySelector('.topics-next');
+
+  let index = 0;
+
+  function show(i) {
+    if (!items.length) return;
+    items[index]?.classList.remove('is-active');
+    index = (i + items.length) % items.length; // цикл по колу
+    items[index].classList.add('is-active');
+    // якщо треба блокувати кнопки при 1 елементі:
+    const single = items.length <= 1;
+    prev.disabled = single;
+    next.disabled = single;
+  }
+
+  // початковий стан
+  items.forEach((el, i) => el.classList.toggle('is-active', i === 0));
+  show(0);
+
+  prev.addEventListener('click', () => show(index - 1));
+  next.addEventListener('click', () => show(index + 1));
+
+  // опційно: клавіатура
+  slider.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') show(index - 1);
+    if (e.key === 'ArrowRight') show(index + 1);
+  });
+
+  // опційно: свайп на мобільних
+  let startX = null;
+  slider.addEventListener(
+    'touchstart',
+    (e) => (startX = e.touches[0].clientX),
+    { passive: true }
+  );
+  slider.addEventListener('touchend', (e) => {
+    if (startX == null) return;
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 40) dx > 0 ? show(index - 1) : show(index + 1);
+    startX = null;
+  });
+});

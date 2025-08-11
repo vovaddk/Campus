@@ -115,11 +115,13 @@
 
   /* Жовта кнопка з легкою тінню (як на макеті) */
   .hero-buttons .btn-primary {
+    width: min(104px, 88%);
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
   }
 
   /* Прозора кнопка з білою рамкою */
   .hero-buttons .btn-secondary {
+    width: min(104px, 88%);
     background: transparent;
     border: 2px solid #fff;
     color: #fff;
@@ -997,25 +999,36 @@
 
   .partners-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    grid-template-columns: repeat(
+      2,
+      minmax(0, 1fr)
+    ); /* 2 колонки без переповнення */
+    gap: 12px;
+    padding: 0 16px; /* звузити до рамок екрана */
+    box-sizing: border-box;
+    max-width: 100%;
+    margin: 0 auto 50px;
   }
 
   .partner-card {
-    width: 160px;
-    height: 108px;
-    background: #fff;
-    border: 1px solid #e5e7eb;
-    border-radius: 6px;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100px;
+    min-width: 0; /* щоб контент не розпирал колонку */
+    padding: 12px;
     text-align: center;
-    font-size: 14px;
-    font-weight: 600;
-    color: #0a2746;
+    border: 1px solid #d9e1ea;
+    border-radius: 8px;
+    background: #fff;
+  }
+
+  /* Текст логотипів: адаптивний розмір і перенос слів */
+  .partner-card > div {
+    font-size: clamp(12px, 3.6vw, 16px);
+    line-height: 1.25;
+    overflow-wrap: anywhere; /* перенос довгих слів/рядків */
+    word-break: break-word;
+  }
+
+  .partner-card small {
+    font-size: clamp(10px, 3vw, 12px);
   }
 
   .partner-card img {
@@ -1285,5 +1298,296 @@
     font-size: 12px;
     line-height: 1.4;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Objective Page Adaptive Style */
+/* 📱 Лише для телефонів */
+@media (max-width: 600px) {
+  .cards {
+    padding: 50px 0;
+  }
+
+  .cards .card-sec {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'title'
+      'image'
+      'text';
+    row-gap: 14px;
+    margin-bottom: 28px;
+  }
+
+  /* Робимо дітей .card__text прямими елементами гріда */
+  .cards .card-sec .card__text {
+    display: contents;
+  }
+
+  /* 1) Заголовок угорі */
+  .cards .card-sec .card__text h3 {
+    grid-area: title;
+    margin: 0;
+    color: #081e35;
+    font-family: 'Manrope', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.72px;
+    text-align: left;
+  }
+
+  /* 2) Зображення по центру, на всю ширину */
+  .cards .card-sec .card__image {
+    grid-area: image;
+  }
+  .cards .card-sec .card__image img {
+    width: 100%;
+    height: auto; /* стабільні пропорції */
+    display: block;
+    border-radius: 0;
+    object-fit: cover;
+  }
+
+  /* 3) Текст нижче з лівим вирівнюванням */
+  .cards .card-sec .card__text p {
+    grid-area: text;
+    margin: 0;
+    color: #4c4c4c;
+    font-family: 'Manrope', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    max-width: 335px;
+    text-align: left;
+  }
+
+  /* На мобільному і “реверсні” картки мають той самий порядок */
+  .cards .card-sec.card--reverse {
+    grid-auto-flow: row;
+  }
+}
+
+/* Project Page */
+@media (max-width: 600px) {
+  /* сітка контролів: пошук зверху, нижче дві колонки */
+  .news-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      'search search'
+      'sel1   sel2';
+    gap: 12px;
+  }
+  .news-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+  .news-controls__search {
+    grid-area: search;
+    position: relative;
+  }
+
+  /* ховаємо старі лінки в nav */
+  .news-nav h5 {
+    display: none;
+  }
+
+  /* контейнер псевдо-select у .news-controls (замість .news-nav) */
+  .news-nav-box {
+    grid-area: sel1;
+    position: relative;
+    width: 100%;
+  }
+
+  /* кнопка як select */
+  .news-nav__select {
+    width: 100%;
+    height: 56px;
+    padding: 0 44px 0 16px;
+    border: 1px solid #d9e1ea;
+    border-radius: 8px;
+    background: #fff;
+    color: #081e35;
+    font-size: 16px;
+    text-align: left;
+    display: block;
+    line-height: 56px;
+    position: relative;
+  }
+  .news-nav__select::after {
+    content: '';
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    width: 18px;
+    height: 18px;
+    transform: translateY(-50%);
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path d='M5 7l5 6 5-6' fill='none' stroke='%23081E35' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>")
+      no-repeat center/18px 18px;
+    pointer-events: none;
+  }
+  .news-nav-box.open .news-nav__select::after {
+    transform: translateY(-50%) rotate(180deg);
+  }
+
+  /* випадаюче меню під кнопкою */
+  .news-nav__menu {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(100% + 6px);
+    background: #fff;
+    border: 1px solid #d9e1ea;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(8, 30, 53, 0.08);
+    padding: 6px;
+    z-index: 20;
+  }
+  .news-nav-box.open .news-nav__menu {
+    display: block;
+  }
+
+  .news-nav__menu a {
+    display: block;
+    padding: 10px 12px;
+    border-radius: 6px;
+    color: #081e35;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  .news-nav__menu a:hover {
+    background: #f4f7fa;
+  }
+  .news-nav__menu a.news-nav__item--active {
+    background: #eef5ff;
+    font-weight: 700;
+  }
+
+  /* рідний select Date – у правій колонці */
+  .news-controls__select {
+    grid-area: sel2;
+    width: 100%;
+    height: 56px;
+    padding: 0 44px 0 16px;
+    border: 1px solid #d9e1ea;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #081e35;
+    background: #fff;
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path d='M5 7l5 6 5-6' fill='none' stroke='%23081E35' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 18px;
+  }
+}
+
+/* Project Page */
+/* 📱 Лише для телефонів */
+@media (max-width: 600px) {
+  .article-meta {
+    padding: 50px 0;
+  }
+  .gallery-testimonial__gallery {
+    display: flex;
+    max-width: 380px;
+    max-height: 260px;
+    gap: 20px;
+    margin-bottom: 40px;
+    flex-direction: column;
+  }
+  .testimonial__author img {
+    width: 32px;
+    height: 32px;
+    aspect-ratio: 1/1;
+  }
+  .topics-images__item img {
+    max-width: 367px;
+    max-height: 244px;
+  }
+  .follow-news__media img {
+    border-radius: 0;
+  }
+  .article-meta__top {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* зліва дата, справа шаринг */
+    column-gap: 24px;
+    row-gap: 8px;
+    align-items: start;
+  }
+
+  /* Обидва блоки — вертикальні: лейбл зверху, значення нижче */
+  .article-meta__date,
+  .article-meta__share {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0; /* щоб довгі слова не ламали сітку */
+  }
+
+  /* показуємо тільки активний слайд */
+  .topics-images__item {
+    display: none;
+  }
+  .topics-images__item.is-active {
+    display: block;
+  }
+
+  /* оформлення */
+  .topics-images__item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+  }
+
+  .topics-controls {
+    margin-top: 12px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .topics-btn {
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #d9e1ea;
+    border-radius: 8px;
+    background: #fff;
+    cursor: pointer;
+  }
+
+  /* Дата жирніша — як на скріні */
+  .article-meta__date time {
+    font-weight: 700;
+    /* font-size: 16px; color: #081e35; */
+    word-break: break-word;
+  }
+
+  /* Іконки в рядок під лейблом */
+  .share-list {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    flex-wrap: nowrap; /* не переносимося на новий рядок */
+  }
+
+  /* Гарантія, що нічого не “вилазить” */
+  .share-list__item a,
+  .share-list__item svg {
+    display: inline-block;
+    max-width: 100%;
   }
 }
