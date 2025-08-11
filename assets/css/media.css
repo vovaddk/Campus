@@ -6,6 +6,7 @@
   width: 25px;
   height: 18px;
   cursor: pointer;
+  z-index: 1001; /* поверх всього */
 }
 .burger span {
   display: block;
@@ -28,10 +29,11 @@
   padding: 60px 20px 20px;
   transform: translateY(-100%);
   transition: transform 0.3s ease;
-  z-index: 999;
+  z-index: 1000;
 }
 .mobile-menu.active {
   transform: translateY(0);
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.35); /* затемнення */
 }
 .mobile-menu nav ul {
   list-style: none;
@@ -51,7 +53,7 @@
   width: 100%;
   text-align: center;
   background: #ffd700;
-  color: white;
+  color: #081e35;
   padding: 12px 0;
   font-size: 18px;
   border-radius: 5px;
@@ -60,7 +62,12 @@
   display: none;
 }
 
-/* Показуємо бургер на мобілці */
+/* Коли меню активне — блокуємо скрол */
+.no-scroll {
+  overflow: hidden;
+}
+
+/* Показуємо бургер на мобілках */
 @media (max-width: 768px) {
   .burger {
     display: flex;
@@ -70,6 +77,7 @@
     display: none;
   }
 }
+
 /* HERO — мобільний вигляд */
 @media (max-width: 768px) {
   .hero-section {
@@ -487,5 +495,633 @@
     max-width: 34ch; /* комфортна довжина рядка */
     margin: 0 auto;
     letter-spacing: -0.2px;
+  }
+}
+/* =======================
+   Capital objectives — mobile
+   ======================= */
+@media (max-width: 991px) {
+  .objectives-container {
+    padding: 24px 16px;
+  }
+
+  .objectives-container .section-title {
+    font-size: 26px;
+    line-height: 1.2;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .objectives-container .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* одна колонка */
+    gap: 12px;
+  }
+
+  .objectives-container .card {
+    display: grid;
+    grid-template-columns: 64px 1fr; /* іконка + контент */
+    align-items: center;
+    gap: 16px;
+    padding: 18px;
+    border-radius: 10px;
+    background: #f3f7fb; /* світлий сіро-блакитний як на макеті */
+    /* якщо в базових стилях є рамки/тіні — приб’ємо */
+    border: none;
+    box-shadow: none;
+  }
+
+  .objectives-container .card .icon {
+    width: 64px;
+    height: 64px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain; /* щоб SVG/PNG вміщувався */
+  }
+
+  .objectives-container .card-content h3 {
+    margin: 0 0 6px;
+    font-size: 18px;
+    line-height: 1.25;
+    color: #0a2746; /* темно-синій текст */
+  }
+
+  .objectives-container .card-content a {
+    display: inline-block;
+    font-size: 16px;
+    color: #0a2746;
+    text-decoration: underline; /* як у макеті */
+    font-weight: 600;
+  }
+}
+
+/* дрібні екрани — трохи менші відступи/іконки */
+@media (max-width: 380px) {
+  .objectives-container .card {
+    grid-template-columns: 56px 1fr;
+    padding: 16px;
+  }
+  .objectives-container .card .icon {
+    width: 56px;
+    height: 56px;
+  }
+  .objectives-container .card-content h3 {
+    font-size: 17px;
+  }
+  .objectives-container .card-content a {
+    font-size: 15px;
+  }
+}
+/* =======================
+   Stats grid — mobile (2 cols table-like)
+   ======================= */
+@media (max-width: 991px) {
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      'hundredsLocal hundredsTons'
+      'thousand      fourHund'
+      'fourVet       eightHund';
+    gap: 0;
+    border: 1px solid #e6eaee;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 0 16px; /* як у макеті є відступи від країв */
+  }
+
+  /* ховаємо великий заголовок блоку на мобільному */
+  .stats-grid .title-section {
+    display: none;
+  }
+
+  /* розкладка елементів за поточним HTML-порядком */
+  .stats-grid > .stat-item:nth-child(3) {
+    grid-area: hundredsLocal;
+  } /* Hundreds — local community */
+  .stats-grid > .stat-item:nth-child(6) {
+    grid-area: hundredsTons;
+  } /* Hundreds — tons of aid */
+  .stats-grid > .top-right-stat {
+    grid-area: thousand;
+  } /* 1000 students */
+  .stats-grid > .stat-item:nth-child(4) {
+    grid-area: fourHund;
+  } /* 400 counseled */
+  .stats-grid > .stat-item:nth-child(5) {
+    grid-area: fourVet;
+  } /* 400 veterans */
+  .stats-grid > .stat-item:nth-child(7) {
+    grid-area: eightHund;
+  } /* 800 ministers */
+  .stats-grid > .stat-item:nth-child(8) {
+    display: none;
+  } /* порожня клітинка */
+
+  /* загальний стиль клітинки */
+  .stats-grid > .stat-item,
+  .stats-grid > .top-right-stat {
+    padding: 18px 16px;
+    background: #fff;
+  }
+
+  /* внутрішні розділювачі (щоб не було подвійних ліній) */
+  /* нижні лінії для перших двох рядків */
+  .stats-grid > .stat-item:nth-child(3),
+  .stats-grid > .stat-item:nth-child(6),
+  .stats-grid > .top-right-stat,
+  .stats-grid > .stat-item:nth-child(4) {
+    border-bottom: 1px solid #e6eaee;
+  }
+  /* вертикальна лінія між колонками (для лівої колонки) */
+  .stats-grid > .stat-item:nth-child(3),  /* hundredsLocal */
+  .stats-grid > .top-right-stat,          /* thousand */
+  .stats-grid > .stat-item:nth-child(5) {
+    /* fourVet */
+    border-right: 1px solid #e6eaee;
+  }
+
+  /* типографіка всередині клітинок */
+  .stats-grid .hundreds-text {
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+
+  .stats-grid .stat-number {
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+
+  .stats-grid .stat-description {
+    font-size: 15px;
+    line-height: 1.45;
+    color: #4b5563; /* сіро-темний текст опису */
+  }
+
+  /* кольори як на макеті */
+  .stats-grid .light-blue {
+    color: #b6d9ff;
+  }
+  .stats-grid .dark-blue {
+    color: #081e35;
+  }
+  .stats-grid .light-gray {
+    color: #9ca3af;
+  }
+
+  /* заголовок секції перед грідом – якщо він у тебе поза .stats-grid,
+     і ти хочеш його приховати на мобільному, додай цей клас */
+  .stats-grid + .section-title--numbers {
+    display: none;
+  }
+}
+
+/* дрібні екрани */
+@media (max-width: 380px) {
+  .stats-grid > .stat-item,
+  .stats-grid > .top-right-stat {
+    padding: 16px 14px;
+  }
+  .stats-grid .stat-number {
+    font-size: 26px;
+  }
+  .stats-grid .hundreds-text {
+    font-size: 22px;
+  }
+  .stats-grid .stat-description {
+    font-size: 14px;
+  }
+}
+/* =======================
+   Plans & visualization — precise mobile layout
+   ======================= */
+@media (max-width: 991px) {
+  /* базові відступи */
+  .combined-sections {
+    padding: 0 16px;
+  }
+  .combined-sections .content-section {
+    margin-bottom: 20px;
+  }
+
+  .combined-sections .section-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .combined-sections .grid-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+  }
+  .combined-sections .text-block {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    min-height: 72px;
+    border-radius: 8px;
+    background: #0a2746;
+    color: #fff;
+  }
+  .combined-sections .text-block h5 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .combined-sections .text-block .icon {
+    width: 32px;
+    height: 32px;
+    display: grid;
+    place-items: center;
+  }
+  .combined-sections .text-block .icon svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* --- Group 1 / item 1: PLANS --- */
+  /* порядок: wide (image 1) / нижче: LEFT (text-block), RIGHT (image 2) */
+  .combined-sections:first-of-type .content-section:first-child .section-grid {
+    grid-template-areas:
+      'wide wide'
+      'left right';
+  }
+  .combined-sections:first-of-type
+    .content-section:first-child
+    .grid-item.full-width {
+    grid-area: wide;
+  }
+  .combined-sections:first-of-type .content-section:first-child .text-block {
+    grid-area: left;
+  }
+  .combined-sections:first-of-type
+    .content-section:first-child
+    .grid-item:not(.full-width) {
+    grid-area: right;
+  }
+
+  /* --- Group 1 / item 2: CAMPUS --- */
+  /* порядок: wide (image 3) / нижче: LEFT (image 4), RIGHT (text-block) */
+  .combined-sections:first-of-type .content-section:last-child .section-grid {
+    grid-template-areas:
+      'wide wide'
+      'left right';
+  }
+  .combined-sections:first-of-type
+    .content-section:last-child
+    .grid-item.full-height {
+    grid-area: wide;
+  }
+  .combined-sections:first-of-type
+    .content-section:last-child
+    .grid-item:not(.full-height) {
+    grid-area: left;
+  }
+  .combined-sections:first-of-type .content-section:last-child .text-block {
+    grid-area: right;
+  }
+
+  /* --- Group 2 / item 1: ACADEMIC BUILDING --- */
+  /* у твоєму HTML бейдж знаходиться В СЕРЕДИНІ другого .grid-item.
+     Щоб він став окремою плиткою, даємо display:contents і розкидаємо дітей по областях */
+  .combined-sections:nth-of-type(2) .content-section:first-child .section-grid {
+    grid-template-areas:
+      'wide wide'
+      'left right';
+  }
+  /* другий grid-item «розчиняємо» */
+  .combined-sections:nth-of-type(2)
+    .content-section:first-child
+    .section-grid
+    .grid-item:nth-child(2) {
+    display: contents;
+  }
+  /* його <img> — широким зверху */
+  .combined-sections:nth-of-type(2)
+    .content-section:first-child
+    .section-grid
+    .grid-item:nth-child(2)
+    > img {
+    grid-area: wide;
+    border-radius: 8px;
+  }
+  /* його .text-block — зліва в другому ряду */
+  .combined-sections:nth-of-type(2)
+    .content-section:first-child
+    .section-grid
+    .grid-item:nth-child(2)
+    > .text-block {
+    grid-area: left;
+  }
+  /* перший grid-item (image 5) — справа в другому ряду */
+  .combined-sections:nth-of-type(2)
+    .content-section:first-child
+    .section-grid
+    .grid-item:first-child {
+    grid-area: right;
+  }
+
+  /* --- Group 2 / item 2: DINING ROOM --- */
+  /* порядок: wide (image 7) / нижче: LEFT (image 8), RIGHT (бейдж) */
+  .combined-sections:nth-of-type(2) .content-section:last-child .section-grid {
+    grid-template-areas:
+      'wide wide'
+      'left right';
+  }
+  .combined-sections:nth-of-type(2)
+    .content-section:last-child
+    .grid-item.full-width {
+    grid-area: wide;
+  }
+  .combined-sections:nth-of-type(2)
+    .content-section:last-child
+    .grid-item.full-height {
+    grid-area: left;
+  }
+  .combined-sections:nth-of-type(2) .content-section:last-child .text-block {
+    grid-area: right;
+  }
+
+  /* дрібні екрани */
+  @media (max-width: 380px) {
+    .combined-sections .section-grid {
+      gap: 10px;
+    }
+    .combined-sections .text-block {
+      padding: 14px;
+      min-height: 66px;
+    }
+    .combined-sections .text-block h5 {
+      font-size: 15px;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .timeline {
+    position: relative;
+    --tl-x: 44px;
+    --marker-size: 44px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: var(--tl-x);
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    opacity: 0.2;
+    background: linear-gradient(
+      270deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.7) 25.5%,
+      #000 50%,
+      rgba(0, 0, 0, 0.7) 75%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+  .timeline-item {
+    position: relative;
+    padding-left: 0;
+    margin: 28px 0 5%;
+    display: flex;
+    flex-direction: column;
+  }
+  .timeline-content .icon {
+    margin: 0 0 8px;
+  }
+  .timeline-content h4 {
+    margin: 0 0 8px;
+    font-size: 14px;
+    color: #6b7280;
+  }
+  .timeline-content p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.35;
+    font-weight: 800;
+    color: #0a2746;
+  }
+  .timeline-content {
+    padding-top: calc(var(--tl-x) + 7%);
+    margin-right: calc(var(--tl-x) + 25%);
+  }
+  .timeline-marker {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    transform: translate(calc(var(--tl-x) - 50%), -100%);
+    width: var(--marker-size);
+    height: var(--marker-size);
+    border-radius: 50%;
+    background: #0a2746;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+  .timeline-marker .number {
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .timeline-image {
+    display: none;
+  }
+}
+/* Partners Section — Mobile & Tablet */
+@media (max-width: 991px) {
+  .partners-section {
+    padding: 0;
+    margin: 0 auto;
+  }
+
+  .partners-section .section-title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+
+  .partners-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .partner-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: #0a2746;
+  }
+
+  .partner-card img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+/* Дуже вузькі екрани — 1 колонка */
+@media (max-width: 480px) {
+  .partners-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .partner-card {
+    min-height: 80px;
+    padding: 15px;
+    font-size: 13px;
+  }
+}
+
+/* How you can help — edge-to-edge cards on phones */
+@media (max-width: 991px) {
+  /* remove side padding so cards can bleed to screen edges */
+  .help-section {
+    padding: 0;
+    margin: 0 auto;
+    max-width: 1000px;
+  }
+
+  .help-section .section-title {
+    text-align: center;
+    font-size: 26px;
+    line-height: 1.2;
+    margin: 0 16px 20px; /* keep title readable but cards will be full width */
+  }
+
+  .help-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    /* make the group span the full viewport width */
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+  }
+
+  .help-card {
+    width: 80vw; /* full screen width */
+    border-radius: 0; /* flush to edges */
+    border-left: 0;
+    border-right: 0;
+
+    background: #eef4f8;
+    border-top: 1px solid #e6edf3;
+    border-bottom: 1px solid #e6edf3;
+
+    padding: 28px 20px; /* inner padding now that edges are flush */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .help-icon {
+    margin: 4px 0 14px;
+    line-height: 0;
+  }
+  .help-icon svg {
+    width: 64px;
+    height: 64px;
+    display: block;
+  }
+
+  .help-title {
+    margin: 0;
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 1.35;
+    color: #0a2746;
+  }
+}
+
+@media (max-width: 480px) {
+  .help-section .section-title {
+    font-size: 22px;
+    margin: 0 14px 14px;
+  }
+  .help-card {
+    padding: 22px 16px;
+  }
+  .help-icon svg {
+    width: 56px;
+    height: 56px;
+  }
+  .help-title {
+    font-size: 18px;
+  }
+}
+/* Give Section — мобільний порядок: H2 → IMG → TEXT → BUTTON */
+@media (max-width: 991px) {
+  .give-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* центрування по горизонталі */
+    gap: 16px;
+    padding: 20px 16px;
+    text-align: center; /* центрування тексту */
+  }
+
+  /* Розплющуємо .give-content, щоб його діти стали "сусідами" з .give-image */
+  .give-content {
+    display: contents;
+  }
+
+  /* 1) Заголовок */
+  .give-content > h2 {
+    order: 1;
+    font-size: 22px;
+    line-height: 1.28;
+    margin: 0;
+  }
+
+  /* 2) Картинка */
+  .give-image {
+    order: 2;
+    width: 100%;
+    max-width: 500px; /* щоб не була надто широка */
+  }
+  .give-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+  }
+
+  /* 3) Текст */
+  .give-content > p {
+    order: 3;
+    margin: 12px 0 16px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  /* 4) Кнопка */
+  .give-content > .give-btn {
+    order: 4;
+    display: inline-block;
+    padding: 12px 20px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 6px;
+    background: #ffd43b;
+    color: #0a2746;
   }
 }
