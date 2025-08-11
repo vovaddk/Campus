@@ -171,7 +171,17 @@ body {
   align-items: center;
   text-align: center;
   color: #fff;
-  background: url('assets/img/background-1.jpg') center/cover no-repeat;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* робить "cover" як у background */
+  z-index: -1;
 }
 .hero-overlay {
   position: absolute;
@@ -1024,14 +1034,25 @@ div.icon > svg {
 /* --- Subscribe --- */
 .subscribe-section {
   position: relative;
-  background: url('assets/img/footer-image.jpg') center/cover no-repeat;
   height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
   text-align: center;
+  overflow: hidden;
 }
+
+.subscribe-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
 .subscribe-section .overlay {
   position: absolute;
   inset: 0;

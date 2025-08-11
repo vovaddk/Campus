@@ -1125,3 +1125,38 @@
     color: #0a2746;
   }
 }
+@media (max-width: 600px) {
+  .subscribe-section {
+    padding: 0 15px;
+  }
+
+  .subscribe-container {
+    width: 100%;
+  }
+
+  .subscribe-form {
+    flex-direction: column;
+    background: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .subscribe-form input {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    font-size: 16px;
+  }
+
+  .subscribe-form button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    background: #f7c948;
+    color: #000;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+  }
+}
