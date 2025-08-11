@@ -171,7 +171,7 @@ body {
   align-items: center;
   text-align: center;
   color: #fff;
-  background: url('/assets/img/background-1.jpg') center/cover no-repeat;
+  background: url('assets/img/background-1.jpg') center/cover no-repeat;
 }
 .hero-overlay {
   position: absolute;
@@ -1024,7 +1024,7 @@ div.icon > svg {
 /* --- Subscribe --- */
 .subscribe-section {
   position: relative;
-  background: url('/assets/img/footer-image.jpg') center/cover no-repeat;
+  background: url('assets/img/footer-image.jpg') center/cover no-repeat;
   height: 400px;
   display: flex;
   align-items: center;
@@ -2005,4 +2005,3 @@ div.icon > svg {
   opacity: 1;
   transform: translateY(-1px);
 }
-
