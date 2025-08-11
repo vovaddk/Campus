@@ -1002,6 +1002,8 @@
   }
 
   .partner-card {
+    width: 160px;
+    height: 108px;
     background: #fff;
     border: 1px solid #e5e7eb;
     border-radius: 6px;
@@ -1026,7 +1028,6 @@
 /* Дуже вузькі екрани — 1 колонка */
 @media (max-width: 480px) {
   .partners-grid {
-    grid-template-columns: 1fr;
     gap: 12px;
   }
 
