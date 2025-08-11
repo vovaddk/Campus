@@ -319,28 +319,18 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%) !important;
+    width: 48px;
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
     pointer-events: none; /* клікаємо по .video-block */
-    z-index: 2; /* поверх прев’ю */
+    z-index: 2;
   }
-
-  .play-button::before {
-    content: '';
-    position: absolute;
-    inset: 0; /* заповнює 64×64 */
-    border-radius: 50%;
-    background: #fff;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-  }
-
   .play-button svg {
-    position: relative; /* всередині 64×64 */
-    width: 60px;
-    height: 60px;
-    fill: #0b2f57;
-    transform: translateX(2px); /* візуальний центр */
+    display: block;
+    width: 64px; /* = розміру контейнера */
+    height: 64px;
   }
 
   /* На випадок, якщо попередній варіант із "inset:0; display:grid" залишився — обнуляємо */
@@ -356,14 +346,6 @@
   .fundraising-section__text {
     font-size: 15px;
     line-height: 1.6;
-  }
-  .play-button::before {
-    width: 58px;
-    height: 58px;
-  }
-  .play-button svg {
-    width: 24px;
-    height: 24px;
   }
 }
 /* === MOBILE: ≤768px — доти ПІД стрілками, гарантовано === */
