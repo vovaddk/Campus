@@ -76,6 +76,27 @@
     display: none;
   }
 }
+/* Анімація бургер → хрестик */
+.burger span {
+  transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
+}
+
+.burger.is-open span:nth-child(1) {
+  transform: translateY(7.5px) rotate(45deg);
+}
+
+.burger.is-open span:nth-child(2) {
+  opacity: 0;
+}
+
+.burger.is-open span:nth-child(3) {
+  transform: translateY(-7.5px) rotate(-45deg);
+}
+
+/* Зміна кольору при відкритті */
+.burger.is-open span {
+  background-color: #081e35; /* чорний */
+}
 
 /* HERO — мобільний вигляд */
 @media (max-width: 768px) {
@@ -1645,6 +1666,7 @@
   }
   .history__item-image {
     width: 100%;
+    padding: 0;
     height: 276px;
     flex-shrink: 0;
     aspect-ratio: 3/2;
