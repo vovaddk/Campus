@@ -1558,9 +1558,11 @@
     display: block;
     border-radius: 8px;
   }
-
+  .topics-images{
+    margin-bottom:0;
+  }
   .topics-controls {
-    margin-top: 12px;
+    margin: 40px 0;
     display: flex;
     justify-content: center;
     gap: 12px;
@@ -1573,7 +1575,7 @@
     align-items: center;
     justify-content: center;
     border: 1px solid #d9e1ea;
-    border-radius: 8px;
+    border-radius: 50%;
     background: #fff;
     cursor: pointer;
   }
