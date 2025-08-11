@@ -1125,7 +1125,7 @@
     color: #0a2746;
   }
 }
-@media (max-width: 600px) {
+@media (max-width: 991px) {
   .subscribe-section {
     padding: 0 15px;
   }
@@ -1135,28 +1135,88 @@
   }
 
   .subscribe-form {
-    flex-direction: column;
+    display: flex;
+    flex-direction: row;
     background: #fff;
     border-radius: 4px;
     overflow: hidden;
+    width: 100%;
   }
 
   .subscribe-form input {
-    width: 100%;
-    padding: 15px;
+    flex: 1;
+    min-width: 0; /* щоб не вилазив за межі */
+    padding: 12px;
     border: none;
-    border-bottom: 1px solid #ccc;
     font-size: 16px;
   }
 
   .subscribe-form button {
-    width: 100%;
-    padding: 15px;
-    border: none;
     background: #f7c948;
-    color: #000;
-    font-weight: bold;
+    border: none;
+    padding: 0 15px;
     font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
+    white-space: nowrap; /* щоб текст кнопки не переносився */
+  }
+}
+@media (max-width: 600px) {
+  .site-footer { 
+    padding: 24px 16px; 
+  }
+
+  /* Сітка: 1-й блок на всю ширину, далі 2 колонки */
+  .footer-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-row-gap: 20px;
+    grid-column-gap: 24px;
+    margin: 0;           /* щоб не з’явився горизонтальний скрол */
+    max-width: 100%;     /* гарантія від переповнення */
+  }
+
+  /* Перша колонка (Construction) тягнеться на 2 колонки */
+  .footer-container .footer-col:nth-child(1) {
+    grid-column: 1 / -1;
+  }
+
+  /* Текст і списки */
+  .footer-col h3 {
+    margin: 0 0 8px;
+    font-size: 18px;
+  }
+  .footer-col p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .footer-col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .footer-col li { 
+    margin: 8px 0; 
+  }
+  .footer-col a { 
+    text-decoration: none; 
+  }
+
+  /* Довгі слова типу “Політика конфіденційності” не ламають верстку */
+  .footer-col, .footer-col li, .footer-col a, .footer-bottom {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    max-width: 100%;
+  }
+
+  /* Низ футера */
+  .footer-bottom {
+    margin-top: 20px;
+    padding-top: 14px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.4;
+    border-top: 1px solid rgba(255,255,255,0.2);
   }
 }
