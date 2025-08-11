@@ -758,7 +758,7 @@
   }
   .combined-sections .grid-item img {
     width: 100%;
-    max-height: 186px;
+    min-height: 100px;
     display: block;
   }
   .grid-item.full-height img {
