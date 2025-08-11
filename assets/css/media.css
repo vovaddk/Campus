@@ -1206,7 +1206,16 @@
   .subscribe-section {
     padding: 0 15px;
   }
-
+  .subscribe-container h2 {
+    color: #fff;
+    text-align: center;
+    font-family: 'Manrope', sans-serif;
+    font-size: 35px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px; /* 125% */
+    letter-spacing: -0.72px;
+  }
   .subscribe-container {
     width: 100%;
   }
@@ -1589,5 +1598,329 @@
   .share-list__item svg {
     display: inline-block;
     max-width: 100%;
+  }
+}
+
+/* About US Page */
+
+@media (max-width: 600px) {
+  .history {
+    padding: 50px 16px; /* поля від країв екрана */
+  }
+
+  /* Вертикальна жовта лінія зліва */
+  .history__timeline {
+    position: relative;
+    padding-left: 12px; /* відступ від лінії до контенту */
+  }
+  .history__timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px; /* товщина лінії */
+    background: var(--gray-200);
+  }
+
+  /* Один стовпчик і порядок: дата → текст → зображення */
+  .history__item {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 24px;
+    min-width: 0; /* запобігає переповненню */
+  }
+  .history__item-body {
+    padding: 0;
+    order: 1 !important;
+  }
+  .history__item-date {
+    padding-left: 45%;
+    width: 200px;
+  }
+  .history__item-text {
+    padding-left: 5%;
+
+    width: 315px;
+  }
+  .history__item-image {
+    width: 100%;
+    height: 276px;
+    flex-shrink: 0;
+    aspect-ratio: 3/2;
+    order: 2 !important;
+  }
+
+  .history__item-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+
+    object-fit: cover;
+  }
+
+  .history__item-date {
+    --gap: 0px; /* 0 – лінія торкається дати; змінюй за потреби */
+    --line-start: 0px;
+    --line-length: 0px;
+    position: relative;
+    margin: 0 0 8px;
+    color: #ffd43b;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 1.2;
+  }
+  .history__item--reverse > .history__item-image {
+    padding: 0;
+  }
+  .history__item-date::before {
+    content: none !important;
+  }
+  .history__item-date::after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    margin-right: 5px;
+    background: var(--gray-200);
+    top: calc(0.9em - 1px); /* підкоригуй за потреби */
+    left: calc(-1 * var(--line-start));
+    width: var(--line-length);
+  }
+  .history__item--reverse .history__item-date::after {
+    transform: translateY(5%) !important;
+  }
+  .history__item-text {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #1a2e44;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+}
+/* 📱 телефони: іконка → заголовок → текст, все стовпчиком */
+@media (max-width: 600px) {
+  .vm-block {
+    padding: 24px 16px;
+    box-sizing: border-box;
+  }
+
+  /* Розкладаємо дочірні елементи однієї картки по гріду */
+  .vm-item {
+    display: grid;
+    grid-template-areas:
+      'icon'
+      'title'
+      'text';
+    justify-items: center; /* центр по горизонталі */
+    row-gap: 12px;
+    margin: 0 auto 28px;
+  }
+
+  /* «Розчиняємо» контейнер, щоб svg і p стали елементами гріда */
+  .vm-content {
+    display: contents;
+  }
+
+  .vm-content svg {
+    grid-area: icon;
+    width: clamp(64px, 20vw, 96px);
+    height: auto;
+  }
+  .vm-heading {
+    grid-area: title;
+    margin: 0;
+    text-align: center;
+    font-size: clamp(22px, 6vw, 28px);
+    line-height: 1.2;
+  }
+  .vm-content p {
+    grid-area: text;
+    margin: 0;
+    text-align: center;
+    font-size: clamp(15px, 4.2vw, 17px);
+    line-height: 1.6;
+    color: #1a2e44;
+    max-width: 42ch;
+    word-break: break-word;
+  }
+
+  .vm-divider {
+    width: 100%;
+    height: 1px;
+    border: 0;
+    background: #d9e1ea;
+    margin: 20px 0 24px;
+  }
+  .plans-visual-block__grid {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr;
+    gap: clamp(20px, 3vw, 36px);
+    align-items: stretch;
+    justify-items: center;
+  }
+  .plans-visual-gallerytext__grid img {
+    width: 324px;
+    height: 244px;
+  }
+}
+/* Plan Page */
+
+.pvg-grid-controls {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  /* контейнер стає колонкою: спочатку картинка, нижче кнопки */
+  #pvgGrid {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  /* показуємо рівно одне зображення, решта ховається */
+  #pvgGrid .plans-visual-gallerytext__item {
+    display: none;
+    width: 100% !important; /* перекриває 324×244 */
+    height: auto !important; /* зберігає пропорції */
+    object-fit: cover; /* на випадок, якщо десь залишиться фіксована висота */
+    border-radius: 12px;
+  }
+  #pvgGrid .plans-visual-gallerytext__item.is-active {
+    display: block;
+  }
+
+  /* кнопки у потоці під картинкою, по центру */
+  #pvgGrid .pvg-grid-controls {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    position: static; /* важливо — не absolute */
+    z-index: auto; /* зайве не потрібно */
+    margin-top: 12px;
+  }
+  #pvgGrid .pvg-grid-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid #d9e1ea;
+    display: grid;
+    place-items: center;
+  }
+  #pvgGrid .pvg-grid-btn:active {
+    transform: scale(0.98);
+  }
+}
+/*Contact US Page*/
+@media (max-width: 600px) {
+  .plans-visual-contacts__grid::before,
+  .plans-visual-contacts__grid::after {
+    display: none;
+  }
+  .plans-visual-contacts {
+    padding: 32px 16px;
+  }
+
+  .plans-visual-contacts__container {
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* усе в одну колонку */
+  .plans-visual-contacts__grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 36px; /* відстань між блоками */
+    position: relative;
+  }
+  /* прибираємо центральні розділювачі */
+  .plans-visual-contacts__grid::before,
+  .plans-visual-contacts__grid::after {
+    display: none !important;
+    content: none !important;
+  }
+
+  .plans-visual-contacts__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center; /* як на скріні */
+  }
+
+  .plans-visual-contacts__icon {
+    margin-bottom: 8px;
+    line-height: 0;
+  }
+  .plans-visual-contacts__icon svg {
+    width: 72px; /* підганяй за потреби: 64–80 */
+    height: auto;
+    display: block;
+  }
+
+  .plans-visual-contacts__label {
+    margin-top: 4px;
+    font-size: 14px;
+    line-height: 1.25;
+    color: #8a96a3; /* сірий підпис */
+  }
+
+  .plans-visual-contacts__value {
+    margin-top: 6px;
+    font-size: 18px;
+    line-height: 1.35;
+    font-weight: 800;
+    color: #0b2f57; /* синій, як у макеті */
+    word-break: break-word;
+  }
+  .plans-visual-contacts__link {
+    color: inherit;
+    text-decoration: none;
+  }
+  .plans-visual-contacts__link:hover {
+    text-decoration: underline;
+  }
+
+  /* соцмережі */
+  .plans-visual-contacts__social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 8px;
+  }
+  .plans-visual-contacts__social-link {
+    color: #0b2f57;
+    display: inline-flex;
+    padding: 4px;
+    border-radius: 8px;
+  }
+  .plans-visual-contacts__social-link svg {
+    display: block;
+  }
+  .plans-visual-contacts__item a,
+  .plans-visual-contacts__value {
+    color: #036;
+    text-align: center;
+    font-family: 'Manrope', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 28px;
+  }
+  .plans-visual-contacts__label {
+    color: #4c4c4c;
+    text-align: center;
+    font-family: 'Manrope', sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
   }
 }

@@ -2,27 +2,43 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Construction Capital Campaign</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="assets/css/style.css" />
-    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/media.css" />
   </head>
   <body>
     <header class="header">
       <div class="container">
         <div class="header-nav">
           <a href="#" class="logo">Construction</a>
+
+          <!-- Кнопка бургер -->
+          <div class="burger" id="burger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <!-- Десктопна навігація -->
           <nav class="nav">
             <ul>
               <li><a href="#" class="active">Home</a></li>
               <li><a href="#">About us</a></li>
-              <li class="dropdown">
-                <a href="objective.html">Objectives</a>
-              </li>
+              <li><a href="objective.html">Objectives</a></li>
               <li><a href="#">Plans and visualization</a></li>
               <li><a href="#">Contact us</a></li>
-              <li><a href="#">Project progress</a></li>
+              <li><a href="project.html">Project progress</a></li>
             </ul>
           </nav>
+
           <a href="#" class="btn btn-donate-header">
             Donate Now
             <span class="donate-icon"
@@ -55,10 +71,31 @@
         </div>
       </div>
     </header>
+
+    <!-- Мобільне меню -->
+    <div class="mobile-menu" id="mobileMenu">
+      <nav>
+        <ul>
+          <li><a href="#" class="active">Home</a></li>
+          <li><a href="#">About us</a></li>
+          <li><a href="objective.html">Objectives</a></li>
+          <li><a href="#">Plans and visualization</a></li>
+          <li><a href="#">Contact us</a></li>
+          <li><a href="project.html">Project progress</a></li>
+        </ul>
+      </nav>
+      <a href="#" class="btn btn-donate-header">Donate Now</a>
+    </div>
+
     <main class="hero-section">
+      <img
+        src="assets/img/background-1.jpg"
+        alt="Hero background"
+        class="hero-bg"
+      />
       <div class="hero-overlay"></div>
       <div class="container hero-content">
-        <h1>The War Destroyed Our Campus -<br />But Not Our Mission</h1>
+        <h1>Capital project objectives</h1>
         <div class="hero-buttons">
           <a href="#" class="btn btn-primary">Donate Now</a>
           <a href="#" class="btn btn-secondary">Subscribe</a>
@@ -112,7 +149,7 @@
             </blockquote>
             <div class="plans-visual-quote__author">
               <img
-                src="https://via.placeholder.com/48"
+                src="assets/img/s"
                 alt="Pastor John Smith"
                 class="plans-visual-quote__author-img"
               />
@@ -148,29 +185,64 @@
       </section>
       <section class="plans-visual-gallerytext">
         <div class="plans-visual-gallerytext__container">
-
-
           <!-- Сітка з 3-х фото -->
-          <div class="plans-visual-gallerytext__grid">
-            <figure class="plans-visual-gallerytext__item">
-              <img
-                src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1200&auto=format&fit=crop"
-                alt=""
-              />
-            </figure>
-            <figure class="plans-visual-gallerytext__item">
-              <img
-                src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1200&auto=format&fit=crop"
-                alt=""
-              />
-            </figure>
-            <figure class="plans-visual-gallerytext__item">
-              <img
-                src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop"
-                alt=""
-              />
-            </figure>
-            
+          <div class="plans-visual-gallerytext__grid" id="pvgGrid">
+            <img
+              class="plans-visual-gallerytext__item"
+              src="assets/img/1.png"
+              alt=""
+            />
+            <img
+              class="plans-visual-gallerytext__item"
+              src="assets/img/2.jpg"
+              alt=""
+            />
+            <img
+              class="plans-visual-gallerytext__item"
+              src="assets/img/1.png"
+              alt=""
+            />
+
+            <div class="pvg-grid-controls" aria-hidden="true">
+              <button
+                class="pvg-grid-btn pvg-grid-prev"
+                type="button"
+                aria-label="Previous"
+              >
+                <!-- ← -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="25"
+                  height="24"
+                  viewBox="0 0 25 24"
+                  fill="none"
+                >
+                  <path
+                    d="M14.4995 17.2892C14.8895 16.8992 14.8895 16.2692 14.4995 15.8792L10.6195 11.9992L14.4995 8.11925C14.8895 7.72925 14.8895 7.09925 14.4995 6.70925C14.1095 6.31925 13.4795 6.31925 13.0895 6.70925L8.49949 11.2992C8.10949 11.6892 8.10949 12.3192 8.49949 12.7092L13.0895 17.2992C13.4695 17.6792 14.1095 17.6792 14.4995 17.2892Z"
+                    fill="#D0DCE6"
+                  />
+                </svg>
+              </button>
+              <button
+                class="pvg-grid-btn pvg-grid-next"
+                type="button"
+                aria-label="Next"
+              >
+                <!-- → -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="25"
+                  height="24"
+                  viewBox="0 0 25 24"
+                  fill="none"
+                >
+                  <path
+                    d="M10.5005 6.71075C10.1105 7.10075 10.1105 7.73075 10.5005 8.12075L14.3805 12.0008L10.5005 15.8808C10.1105 16.2708 10.1105 16.9008 10.5005 17.2908C10.8905 17.6808 11.5205 17.6808 11.9105 17.2908L16.5005 12.7008C16.8905 12.3108 16.8905 11.6808 16.5005 11.2908L11.9105 6.70075C11.5305 6.32075 10.8905 6.32075 10.5005 6.71075Z"
+                    fill="#D0DCE6"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
 
           <!-- Текст -->
@@ -190,16 +262,22 @@
             </p>
           </div>
         </div>
-                  <!-- Велике зображення зверху -->
-          <figure class="plans-visual-gallerytext__hero">
-            <img
-              src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1920&auto=format&fit=crop"
-              alt=""
-            />
-          </figure>
+        <!-- Велике зображення зверху -->
+        <figure class="plans-visual-gallerytext__hero">
+          <img
+            src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1920&auto=format&fit=crop"
+            alt=""
+          />
+        </figure>
       </section>
     </div>
+    <!-- Subscribe Section -->
     <section class="subscribe-section">
+      <img
+        src="assets/img/footer-image.jpg"
+        alt="Subscribe background"
+        class="subscribe-bg"
+      />
       <div class="overlay"></div>
       <div class="subscribe-container">
         <h2>Subscribe to news</h2>
@@ -245,4 +323,5 @@
       </div>
     </footer>
   </body>
+  <script src="assets/js/script.js"></script>
 </html>
