@@ -49,14 +49,15 @@
 }
 .mobile-menu .btn-donate-header {
   display: block;
-  width: 100%;
+  width: calc(100% - 40px); /* мінус 20px відступ зліва і справа */
   text-align: center;
   background: #ffd700;
   color: #081e35;
-  padding: 12px 0;
   font-size: 18px;
   border-radius: 5px;
+  box-sizing: border-box;
 }
+
 .mobile-menu .donate-icon {
   display: none;
 }
