@@ -767,7 +767,7 @@
   }
   .combined-sections .text-block {
     display: flex;
-    height: 75px;
+    height: auto;
     align-items: center;
     gap: 12px;
     padding: 10px;
