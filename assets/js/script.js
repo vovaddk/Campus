@@ -1,4 +1,6 @@
 (() => {
+  'use strict';
+
   /* =========================
      1) ЄДИНИЙ СЛАЙДЕР
      ========================= */
@@ -147,24 +149,23 @@
     const isMobile = matchMedia(MOBILE_QUERY).matches;
 
     if (isMobile) {
-      // Мобільний: тягнемо від лівої вертикалі до ПОЧАТКУ тексту дати (враховано padding-left)
+      // Мобільний: від лівої вертикалі до початку тексту дати
       const leftLineX = getLeftLineX(tl);
 
       document.querySelectorAll('.history__item-date').forEach((el) => {
         const cs = getComputedStyle(el);
-        const padL = parseFloat(cs.paddingLeft) || 0; // ваша дата має padding-left
+        const padL = parseFloat(cs.paddingLeft) || 0;
         const gap = parseFloat(cs.getPropertyValue('--gap')) || 0;
 
-        const elLeft = el.getBoundingClientRect().left; // край блоку дати
+        const elLeft = el.getBoundingClientRect().left;
         const fromElLeftToLine = Math.max(0, elLeft - leftLineX);
-        const length = Math.max(0, fromElLeftToLine + padL - gap); // до початку тексту
+        const length = Math.max(0, fromElLeftToLine + padL - gap);
 
-        // CSS: left = -var(--line-start), width = var(--line-length)
         el.style.setProperty('--line-start', fromElLeftToLine + 'px');
         el.style.setProperty('--line-length', length + 'px');
       });
     } else {
-      // Десктоп: від центральної осі (як було)
+      // Десктоп: від центральної осі
       const { left, width } = tl.getBoundingClientRect();
       const centerX = left + width / 2;
       const R = 6,
@@ -205,7 +206,7 @@
     window.addEventListener('load', updateTimelineLines);
     if (document.fonts?.ready) document.fonts.ready.then(updateTimelineLines);
 
-    // ResizeObserver для зміни розмірів контенту
+    // ResizeObserver
     if ('ResizeObserver' in window) {
       const ro = new ResizeObserver(rerender);
       ro.observe(tl);
@@ -214,7 +215,7 @@
       ).forEach((n) => ro.observe(n));
     }
 
-    // MutationObserver на випадок динамічних змін DOM/атрибутів
+    // MutationObserver
     const mo = new MutationObserver(rerender);
     mo.observe(tl, { childList: true, subtree: true, attributes: true });
   }
@@ -386,7 +387,123 @@
   }
 
   /* =========================
-     6) ІНІЦІАЛІЗАЦІЯ
+     6) БУРГЕР-МЕНЮ
+     ========================= */
+  function initBurgerMenu() {
+    const burger = document.getElementById('burger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (!burger || !mobileMenu) return;
+
+    const body = document.body;
+
+    const open = () => {
+      mobileMenu.classList.add('active');
+      burger.classList.add('is-open');
+      body.classList.add('no-scroll');
+      burger.setAttribute('aria-expanded', 'true');
+    };
+
+    const close = () => {
+      mobileMenu.classList.remove('active');
+      burger.classList.remove('is-open');
+      body.classList.remove('no-scroll');
+      burger.setAttribute('aria-expanded', 'false');
+    };
+
+    const toggle = () => {
+      mobileMenu.classList.contains('active') ? close() : open();
+    };
+
+    // ARIA/ролі
+    burger.setAttribute('role', 'button');
+    burger.setAttribute('aria-controls', 'mobileMenu');
+    burger.setAttribute('aria-expanded', 'false');
+
+    // події
+    burger.addEventListener('click', toggle);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') close();
+    });
+
+    // закривати при кліку на будь-який <a> в моб. меню
+    mobileMenu.addEventListener('click', (e) => {
+      const a = e.target.closest('a');
+      if (a) close();
+    });
+
+    // клік поза меню
+    document.addEventListener('click', (e) => {
+      if (!mobileMenu.classList.contains('active')) return;
+      const inside = mobileMenu.contains(e.target) || burger.contains(e.target);
+      if (!inside) close();
+    });
+
+    // якщо розтягнули екран назад на десктоп — скинути стан
+    const mq = window.matchMedia('(min-width: 769px)');
+    const handle = () => {
+      if (mq.matches) close();
+    };
+    if (mq.addEventListener) mq.addEventListener('change', handle);
+    else mq.addListener(handle); // старі браузери
+  }
+
+  /* =========================
+     7) СЛАЙДЕР СІТКИ (#pvgGrid)
+     ========================= */
+  function initPvgGridSlider() {
+    const grid = document.getElementById('pvgGrid');
+    if (!grid) return;
+
+    const items = Array.from(
+      grid.querySelectorAll('.plans-visual-gallerytext__item')
+    );
+    const prev = grid.querySelector('.pvg-grid-prev');
+    const next = grid.querySelector('.pvg-grid-next');
+    if (!items.length) return;
+
+    let index = 0;
+
+    function show(i) {
+      items[index]?.classList.remove('is-active');
+      index = (i + items.length) % items.length;
+      items[index].classList.add('is-active');
+
+      const single = items.length <= 1;
+      if (prev) prev.disabled = single;
+      if (next) next.disabled = single;
+    }
+
+    // старт
+    items.forEach((img, i) => img.classList.toggle('is-active', i === 0));
+    show(0);
+
+    // кліки
+    prev?.addEventListener('click', () => show(index - 1));
+    next?.addEventListener('click', () => show(index + 1));
+
+    // свайп
+    let startX = null;
+    grid.addEventListener('touchstart', (e) => (startX = e.touches[0].clientX), {
+      passive: true,
+    });
+    grid.addEventListener('touchend', (e) => {
+      if (startX == null) return;
+      const dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 40) dx > 0 ? show(index - 1) : show(index + 1);
+      startX = null;
+    });
+
+    // клавіатура (опційно)
+    grid.setAttribute('tabindex', '0');
+    grid.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') show(index - 1);
+      if (e.key === 'ArrowRight') show(index + 1);
+    });
+  }
+
+  /* =========================
+     8) ІНІЦІАЛІЗАЦІЯ
      ========================= */
   document.addEventListener('DOMContentLoaded', () => {
     // Слайдери у всіх .main-container
@@ -402,55 +519,11 @@
     initVideoBlocks();
     initNewsNavSelect();
     initTopicsSlider();
+
+    // Бургер-меню
+    initBurgerMenu();
+
+    // Грід-слайдер
+    initPvgGridSlider();
   });
 })();
-document.addEventListener('DOMContentLoaded', () => {
-  const grid = document.getElementById('pvgGrid');
-  if (!grid) return;
-
-  const items = Array.from(
-    grid.querySelectorAll('.plans-visual-gallerytext__item')
-  );
-  const prev = grid.querySelector('.pvg-grid-prev');
-  const next = grid.querySelector('.pvg-grid-next');
-  if (!items.length) return;
-
-  let index = 0;
-
-  function show(i) {
-    items[index]?.classList.remove('is-active');
-    index = (i + items.length) % items.length;
-    items[index].classList.add('is-active');
-
-    const single = items.length <= 1;
-    if (prev) prev.disabled = single;
-    if (next) next.disabled = single;
-  }
-
-  // старт
-  items.forEach((img, i) => img.classList.toggle('is-active', i === 0));
-  show(0);
-
-  // кліки
-  prev?.addEventListener('click', () => show(index - 1));
-  next?.addEventListener('click', () => show(index + 1));
-
-  // свайп
-  let startX = null;
-  grid.addEventListener('touchstart', (e) => (startX = e.touches[0].clientX), {
-    passive: true,
-  });
-  grid.addEventListener('touchend', (e) => {
-    if (startX == null) return;
-    const dx = e.changedTouches[0].clientX - startX;
-    if (Math.abs(dx) > 40) dx > 0 ? show(index - 1) : show(index + 1);
-    startX = null;
-  });
-
-  // клавіатура (опційно)
-  grid.setAttribute('tabindex', '0');
-  grid.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') show(index - 1);
-    if (e.key === 'ArrowRight') show(index + 1);
-  });
-});

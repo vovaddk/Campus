@@ -25,7 +25,6 @@
   background: #fff;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   padding: 60px 20px 20px;
   transform: translateY(-100%);
   transition: transform 0.3s ease;
