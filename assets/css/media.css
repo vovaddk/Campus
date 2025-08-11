@@ -278,29 +278,39 @@
   }
 
   .play-button {
-    position: absolute;
-    inset: 0;
-    display: grid;
-    place-items: center;
-    pointer-events: none; /* клікаємо по блоку */
+    position: absolute !important;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none; /* клікаємо по .video-block */
+    z-index: 2; /* поверх прев’ю */
   }
 
   .play-button::before {
     content: '';
-    width: 64px;
-    height: 64px;
+    position: absolute;
+    inset: 0; /* заповнює 64×64 */
     border-radius: 50%;
     background: #fff;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-    display: block;
   }
 
   .play-button svg {
-    position: absolute;
-    width: 26px;
-    height: 26px;
-    fill: #0b2f57; /* темно-синій трикутник */
-    transform: translateX(2px); /* легкий візуальний центринг */
+    position: relative; /* всередині 64×64 */
+    width: 60px;
+    height: 60px;
+    fill: #0b2f57;
+    transform: translateX(2px); /* візуальний центр */
+  }
+
+  /* На випадок, якщо попередній варіант із "inset:0; display:grid" залишився — обнуляємо */
+  .play-button.reset-centering {
+    inset: auto !important;
+    display: flex !important;
+    place-items: normal !important;
   }
 }
 
@@ -643,6 +653,7 @@
 
   /* типографіка всередині клітинок */
   .stats-grid .hundreds-text {
+    font-family: 'Manrope', sans-serif;
     font-size: 24px;
     font-weight: 800;
     line-height: 1.2;
@@ -650,27 +661,36 @@
   }
 
   .stats-grid .stat-number {
-    font-size: 28px;
-    font-weight: 800;
-    line-height: 1.1;
+    font-family: 'Manrope', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px; /* 125% */
+    letter-spacing: -0.72px;
     margin-bottom: 8px;
   }
 
   .stats-grid .stat-description {
+    font-family: 'Manrope', sans-serif;
+    max-width: 135px;
     font-size: 15px;
     line-height: 1.45;
+    text-align: left;
     color: #4b5563; /* сіро-темний текст опису */
   }
-
+  .top-right-stat {
+    display: flex;
+    align-items: flex-start;
+  }
   /* кольори як на макеті */
   .stats-grid .light-blue {
     color: #b6d9ff;
   }
   .stats-grid .dark-blue {
-    color: #081e35;
+    color: #4c4c4c;
   }
   .stats-grid .light-gray {
-    color: #9ca3af;
+    color: #4c4c4c;
   }
 
   /* заголовок секції перед грідом – якщо він у тебе поза .stats-grid,
@@ -699,10 +719,14 @@
 /* =======================
    Plans & visualization — precise mobile layout
    ======================= */
+/* =======================
+   Plans & visualization — precise mobile layout
+   ======================= */
 @media (max-width: 991px) {
   /* базові відступи */
   .combined-sections {
     padding: 0 16px;
+    gap: 0;
   }
   .combined-sections .content-section {
     margin-bottom: 20px;
@@ -715,17 +739,20 @@
   }
   .combined-sections .grid-item img {
     width: 100%;
-    height: auto;
+    max-height: 186px;
     display: block;
-    border-radius: 8px;
+  }
+  .grid-item.full-height img {
+    height: 104px;
+    object-fit: cover;
   }
   .combined-sections .text-block {
     display: flex;
+    height: 75px;
     align-items: center;
     gap: 12px;
     padding: 16px;
     min-height: 72px;
-    border-radius: 8px;
     background: #0a2746;
     color: #fff;
   }
@@ -809,7 +836,6 @@
     .grid-item:nth-child(2)
     > img {
     grid-area: wide;
-    border-radius: 8px;
   }
   /* його .text-block — зліва в другому ряду */
   .combined-sections:nth-of-type(2)
@@ -898,15 +924,21 @@
   }
   .timeline-content h4 {
     margin: 0 0 8px;
-    font-size: 14px;
-    color: #6b7280;
+    font-family: 'Manrope', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    color: #4c4c4c;
   }
   .timeline-content p {
     margin: 0;
+    font-family: 'Manrope', sans-serif;
     font-size: 16px;
-    line-height: 1.35;
-    font-weight: 800;
-    color: #0a2746;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    color: #081e35;
   }
   .timeline-content {
     padding-top: calc(var(--tl-x) + 7%);
@@ -1046,10 +1078,12 @@
 
   .help-title {
     margin: 0;
-    font-weight: 800;
+    color: #081e35;
+    font-family: 'Manrope', sans-serif;
     font-size: 20px;
-    line-height: 1.35;
-    color: #0a2746;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 28px;
   }
 }
 
@@ -1076,7 +1110,7 @@
     flex-direction: column;
     align-items: center; /* центрування по горизонталі */
     gap: 16px;
-    padding: 20px 16px;
+    padding: 48px 16px;
     text-align: center; /* центрування тексту */
   }
 
@@ -1088,8 +1122,14 @@
   /* 1) Заголовок */
   .give-content > h2 {
     order: 1;
-    font-size: 22px;
-    line-height: 1.28;
+    color: #081e35;
+    text-align: center;
+    font-family: 'Manrope', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px; /* 125% */
+    letter-spacing: -0.72px;
     margin: 0;
   }
 
@@ -1109,9 +1149,17 @@
   /* 3) Текст */
   .give-content > p {
     order: 3;
+    max-width: 335px; /* щоб не лізло за межі, якщо треба точні 335px — заміни на width */
+    width: 100%;
     margin: 12px 0 16px;
+    color: #4c4c4c;
+    font-family: 'Manrope', sans-serif;
     font-size: 16px;
-    line-height: 1.5;
+    line-height: 24px;
+    font-style: normal;
+    font-weight: 500;
+    display: block; /* було flex */
+    text-align: left; /* ← вирівнює текст по лівому краю */
   }
 
   /* 4) Кнопка */

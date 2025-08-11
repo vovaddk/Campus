@@ -127,3 +127,35 @@ document.addEventListener('DOMContentLoaded', () => {
       new SliderManager(container);
     });
 });
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.video-block').forEach(function (block) {
+    const videoId = block.dataset.videoId;
+    if (!videoId) return;
+
+    // Доступність
+    block.setAttribute('role', 'button');
+    block.setAttribute('tabindex', '0');
+    block.setAttribute('aria-label', 'Play video');
+
+    const play = () => {
+      const src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&playsinline=1&modestbranding=1`;
+      const iframe = document.createElement('iframe');
+      iframe.src = src;
+      iframe.title = 'YouTube video player';
+      iframe.allow =
+        'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.allowFullscreen = true;
+
+      block.innerHTML = ''; // прибираємо прев’ю і кнопку
+      block.appendChild(iframe); // вставляємо плеєр
+    };
+
+    block.addEventListener('click', play, { once: true });
+    block.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        play();
+      }
+    });
+  });
+});
